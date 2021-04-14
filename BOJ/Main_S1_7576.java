@@ -7,9 +7,8 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main_S1_7576 {
-	static int N, M, max, ans;
+	static int N, M, ans;
 	static int[][] map;
-	static int[][] visited;
 	static int[] dr = {-1, 1, 0, 0};
 	static int[] dc = {0, 0, -1, 1};
 	static Queue<Pos> tomato;
@@ -30,9 +29,7 @@ public class Main_S1_7576 {
 		M = Integer.parseInt(st.nextToken());
 		N = Integer.parseInt(st.nextToken());
 		map = new int[N][M];
-		visited = new int[N][M];
 		tomato = new LinkedList<Pos>();
-		max = 0;
 		ans = 0;
 		for(int n = 0 ; n<N ; n++) {
 			st = new StringTokenizer(br.readLine());
@@ -40,7 +37,6 @@ public class Main_S1_7576 {
 				map[n][m] = Integer.parseInt(st.nextToken());
 				if(map[n][m] == 1) {
 					tomato.offer(new Pos(n, m));
-					max++;
 				}
 			}
 		}
@@ -61,9 +57,7 @@ public class Main_S1_7576 {
 
 	private static void BFS() {
 		while(!tomato.isEmpty()) {
-			int idx = max;
-			max = 0;
-			for(int i = 0 ; i<idx ; i++) {
+			for(int i = 0, size = tomato.size() ; i<size ; i++) {
 				Pos temp = tomato.poll();
 				int temp_x = temp.x;
 				int temp_y = temp.y;
@@ -75,7 +69,6 @@ public class Main_S1_7576 {
 					if(nr>-1 && nr<N && nc>-1 && nc<M && map[nr][nc] == 0) {
 						tomato.offer(new Pos(nr, nc));
 						map[nr][nc] = 1;
-						max++;
 					}
 				}
 			}

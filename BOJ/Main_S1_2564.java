@@ -9,22 +9,22 @@ public class Main_S1_2564 {
 		int W = sc.nextInt();
 		int H = sc.nextInt();
 		int B = sc.nextInt();
-		int[][] loc = new int[B+1][3];
+		int[][] loc = new int[B+1][3]; // [동서남북, r좌표, c좌표]
 		int ans = 0;
 		for(int b = 0 ; b<B+1 ; b++) {
 			int x = sc.nextInt();
 			int y = sc.nextInt();
 			switch (x) {
-			case 1:
+			case 1: // 북
 				loc[b] = new int[] {x, 0, y};
 				break;
-			case 2:
+			case 2: // 남
 				loc[b] = new int[] {x, H, y};
 				break;
-			case 3:
+			case 3: // 서
 				loc[b] = new int[] {x, y, 0};
 				break;
-			case 4:
+			case 4: // 동
 				loc[b] = new int[] {x, y, W};
 				break;
 			default:
