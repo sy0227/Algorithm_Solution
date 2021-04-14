@@ -63,7 +63,6 @@ public class Main_G5_17144 {
 		// list의 i번째 좌표에서 공기청정기, 범위 밖을 제외하고 퍼질 수 있는 칸에 먼지 퍼트리기
 		while(!dust.isEmpty()) {
 			int[] temp = dust.poll();
-			if(temp[2]<5) continue;
 			int spread = temp[2]/5;
 			int cnt = 0;
 			
@@ -86,7 +85,7 @@ public class Main_G5_17144 {
 		int up = airCleaner[0];
 		int down = airCleaner[1];
 		
-		// 공기청정기 위쪽 칸은 반시계 - 상우하좌로 밀기
+		// 공기청정기 위쪽 칸은 반시계 - 하좌상우로 땡기기
 		for(int i = up-1 ; i>0 ; i--) {
 			map[i][0] = map[i-1][0];
 		}
@@ -101,7 +100,7 @@ public class Main_G5_17144 {
 		}
 		map[up][1] = 0;
 		
-		// 아래 쪽은 시계 - 하우상좌로 밀기
+		// 아래 쪽은 시계 - 상좌하우로 땡기기
 		for(int i = down+1 ; i<R-1 ; i++) {
 			map[i][0] = map[i+1][0];
 		}
