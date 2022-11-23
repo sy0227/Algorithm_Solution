@@ -4,3 +4,5 @@
 |--|--|--|
 | 3 | 입력된 문자를 조건에 맞게 판별 | https://github.com/sy0227/Algorithm_Solution/blob/main/WST/Q3_Str.java |
 | 9 | BFS를 이용한 탐색 | https://github.com/sy0227/Algorithm_Solution/blob/main/WST/Q9_BFS.java |
+
+다양한 test case 넣고 돌려보시고, 오류나 이해 안가는 부분은 연락주세요~
