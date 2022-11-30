@@ -45,31 +45,32 @@ public class Q9_BFS {
 	private static int BFS(int fromX, int fromY, int toX, int toY, int N, int[][] cntMap) {
 		// 4방향 탐색을 위한 방향 이동 arr 선언 (좌우상하 순으로 선언했는데 순서는 무관)
 		int[] dx = {-1, 1, 0, 0};
-    	int[] dy = {0, 0, -1, 1};
-    	
-    	// BFS는 큐 자료구조를 이용하여 탐색. => 맨 위에 import java.util.*;을 해줘야 사용 가능!
-    	Queue<int[]> queue = new LinkedList<>();
-    	queue.add(new int[] {fromX, fromY}); // 첫 시작점을 큐에 담아줌
-    	while(!queue.isEmpty()) {
-    		// 4방향 탐색을 시작하고자 하는 중심지를 temp로 표시
-    		int[] temp = queue.poll();
-    		int tempX = temp[0];
-    		int tempY = temp[1];
-    		for(int i = 0 ; i<4 ; i++) {
-    			// 4방향에 대해서 나아갈 좌표를 next로 표시
-    			int nextX = tempX + dx[i];
-    			int nextY = tempY + dy[i];
-    			// 다음 번에 탐색할 좌표가 지도 범위 내에 있고 벽(-1)이 아닌지 판별하여 큐에 넣어주기
-    			if(0<=nextX && nextX<N && 0<=nextY && nextY<N && cntMap[nextX][nextY] != -1) {
-    				if(nextX == toX && nextY == toY) {
-    					cntMap[nextX][nextY] = cntMap[tempX][tempY] + 1;
-    					return cntMap[toX][toY];
-    				}
-    				queue.add(new int[] {nextX, nextY});
-    				cntMap[nextX][nextY] = cntMap[tempX][tempY] + 1;
-    			}
-    		}
-    	}
+		int[] dy = {0, 0, -1, 1};
+
+		// BFS는 큐 자료구조를 이용하여 탐색. => 맨 위에 import java.util.*;을 해줘야 사용 가능!
+		Queue<int[]> queue = new LinkedList<>();
+		queue.add(new int[] {fromX, fromY}); // 첫 시작점을 큐에 담아줌
+		while(!queue.isEmpty()) {
+			// 4방향 탐색을 시작하고자 하는 중심지를 temp로 표시
+			int[] temp = queue.poll();
+			int tempX = temp[0];
+			int tempY = temp[1];
+			for(int i = 0 ; i<4 ; i++) {
+				// 4방향에 대해서 나아갈 좌표를 next로 표시
+				int nextX = tempX + dx[i];
+				int nextY = tempY + dy[i];
+				// 다음 번에 탐색할 좌표가 지도 범위 내에 있고 벽(-1)이 아닌지 판별하여 큐에 넣어주기
+				if(0<=nextX && nextX<N && 0<=nextY && nextY<N && cntMap[nextX][nextY] != -1) {
+					if(nextX == toX && nextY == toY) {
+						cntMap[nextX][nextY] = cntMap[tempX][tempY] + 1;
+						return cntMap[toX][toY];
+					}
+					queue.add(new int[] {nextX, nextY});
+					cntMap[nextX][nextY] = cntMap[tempX][tempY] + 1;
+				}
+			}
+			cntMap[tempX][tempY] = -1; // 기존에 방문한 칸을 다시 방문할 필요가 없기 때문에 벽을 세워줌
+		}
 		return 0; // 문제에서 주어진 조건이 목적지에 도달하지 못하는 경우는 없다고 봤던 것 같으니 여기서 리턴될 가능성 X
 	}
 }
